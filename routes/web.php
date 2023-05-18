@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Middleware\UserType;
+use App\Models\Participant;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,18 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 })->name('welcome');
+
+Route::get('/participant/register', function () {
+    return Inertia::render('Participant/Register');
+})->name('participant-register');
+
+Route::get('/participant/code', function (Request $request) {
+    $participant = Participant::where('dni', $request->dni)->first();
+    if (!$participant) return redirect()->back();
+    return Inertia::render('Participant/Code', ['code' => $participant->id]);
+})->name('participant-code');
+
+Route::post('/participant/register', 'App\Http\Controllers\Participant\ParticipantController@store')->name('participant-register');
 
 Route::middleware([
     'auth:sanctum',

@@ -16,6 +16,7 @@ class Participant extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'dni',
         'name',
         'grade',
         'points'

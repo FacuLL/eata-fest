@@ -11,12 +11,14 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected  $primaryKey = 'id';
+
     protected $fillable = [
         'name',
         'logo_id'
     ];
 
-    public function games()
+    public function users()
     {
         return $this->belongsToMany(User::class, 'user_game');
     }

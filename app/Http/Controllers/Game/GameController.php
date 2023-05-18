@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Game;
 
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
 use Validator;
 use App\Models\Game;
+use App\Models\User;
 use Auth;
-use Inertia\Inertia;
 
-class RegisteredUserController extends Controller {
+class GameController extends Controller {
 
     /**
      * The guard implementation.
@@ -39,24 +37,44 @@ class RegisteredUserController extends Controller {
      * @return \Laravel\Fortify\Contracts\RegisterResponse
      */
     public function store(Request $request) {
-        $user = Auth::guard('user')->user();
-        dd($user);
-        if ($user) {
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'logo_id' => 'required',
-            ]);
-            if ($validator->fails()) {
-                return redirect()->back()
-                                 ->withErrors($validator)
-                                 ->withInput();
-            }
-            $game = Game::create([
-                'name' => $request['name'],
-                'logo_id' => $request['logo_id'],
-            ]);
-            return redirect('admin/dashboard');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'logo_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                                ->withErrors($validator)
+                                ->withInput();
         }
+        $game = Game::create([
+            'name' => $request['name'],
+            'logo_id' => $request['logo_id'],
+        ]);
+        return redirect()->back()->with('success', 'Se creó el juego correctamente');
+    }
+
+    public function delete(Request $request) {
+        Game::destroy((int)$request->id);
+        return redirect()->back()->with('success', 'Se eliminó el juego correctamente');
+    }
+
+    public function addUser(Request $request) {
+        $game = Game::with('users')->find((int)$request['game']);
+        $user = User::find((int)$request['user']);
+        if (!$game || !$user) return redirect()->back();
+        foreach ($game->users as $theuser) {
+            if ($theuser->id == $user->id) return redirect()->back();
+        }
+        $game->users()->attach($user);
+        return redirect()->back();
+    }
+
+    public function deleteUser(Request $request) {
+        $game = Game::find((int)$request->game);
+        $user = User::with('games')->find((int)$request->user);
+        if (!$game || !$user) return redirect()->back();
+        $game->users()->detach((int)$request->user);
+        return redirect()->back();
     }
 
 }
