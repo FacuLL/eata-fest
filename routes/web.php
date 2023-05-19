@@ -5,7 +5,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Middleware\UserType;
+use App\Models\Game;
 use App\Models\Participant;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +49,26 @@ Route::middleware([
     UserType::class
 ])->group(function () {
     Route::get('/dashboard', function (Request $request) {
-        return Inertia::render('Dashboard', ['user_type' => $request->user_type]);
+        $user = Auth::guard('sanctum')->user();
+        return Inertia::render('Dashboard', ['user_type' => $request->user_type, 'games' => $user->games]);
     })->name('dashboard');
+    Route::get('/dashboard/game', function (Request $request) {
+        $error = null;
+        $id = Auth::guard('sanctum')->user()->id;
+        $game = Game::with(['users' => function ($query) use ($id) {
+            $query->where('id', '=', $id);
+        }])->find($request->id);
+        if (!$game) return null;
+        $participant = Participant::find($request->participant);
+        if ($request->participant && !$participant) $error = 'Participante no encontrado';
+        return Inertia::render('Game', ['user_type' => $request->user_type, 'game' => $game, 'participant' => $participant, 'error' => $error]);
+    })->name('dashboard-game');
+    Route::post('/dashboard/transaction', 'App\Http\Controllers\Transaction\TransactionController@store');
+    Route::get('/dashboard/transaction', function (Request $request) {
+        $transaction = Transaction::with(['game', 'user', 'participant'])->find($request->id);
+        if (!$transaction) redirect()->back();
+        return Inertia::render('Transaction', ['user_type' => $request->user_type, 'transaction' => $transaction, 'success' => $request->success]);
+    })->name('dashboard-transaction');
 });
 
 require 'admin.php';

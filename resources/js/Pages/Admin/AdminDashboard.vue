@@ -172,7 +172,7 @@ export default {
                                 <h2 v-if="this.userGameSelection" class="dark:text-gray-400 text-xl block w-fill inline-block">Selecciona un juego abajo</h2>
                                 <h2 v-else-if="user.games.length > 0" class="dark:text-gray-300 text-xl block w-fill inline-block">Juegos que organiza:</h2>
                                 <h2 v-else="" class="dark:text-gray-400 text-xl block w-fill inline-block">No pertenece a ningún juego</h2>
-                                <svg @click="this.userGameSelection = (this.userGameSelection == user.id) ? null : user.id" xmlns="http://www.w3.org/2000/svg" :class="this.userGameSelection ? 'rotate-45 stroke-red-700' : ''" class="ml-1 mt-0.5 stroke-violet-700 inline-block flex content-center cursor-pointer scale-100 motion-safe:hover:scale-[1.03] transition-all duration-250" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg @click="this.userGameSelection = (this.userGameSelection == user.id) ? null : user.id" xmlns="http://www.w3.org/2000/svg" class="ml-1 mt-0.5 stroke-violet-700 inline-block flex content-center cursor-pointer scale-100 motion-safe:hover:scale-[1.03] transition-all duration-250" :class="this.userGameSelection ? 'rotate-45 !stroke-red-700' : ''" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M9 12h6" />
                                     <path d="M12 9v6" />
