@@ -40,6 +40,11 @@ Route::get('/participant/code', function (Request $request) {
     return Inertia::render('Participant/Code', ['code' => $participant->id]);
 })->name('participant-code');
 
+Route::get('/ranking', function () {
+    $participants = Participant::offset(0)->limit(20)->orderBy('points', 'desc')->get();
+    return Inertia::render('Ranking', ["participants" => $participants]);
+})->name('ranking');
+
 Route::post('/participant/register', 'App\Http\Controllers\Participant\ParticipantController@store')->name('participant-register');
 
 Route::middleware([

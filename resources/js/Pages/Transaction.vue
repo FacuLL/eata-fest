@@ -30,7 +30,7 @@ import PrimaryButton from '../Components/PrimaryButton.vue';
     <AppLayout title="Dashboard"  user_type="{{ $page.props.user_type }}">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <h1 v-if="success" class="mt-2 text-gray-500 text-center text-3xl">Transacción creada con éxito</h1>
+                <h1 v-if="success" class="mb-2 text-gray-500 text-center text-xl">Transacción creada con éxito</h1>
                 <h1 class="dark:text-gray-200 text-center text-3xl">Transacción N°{{ transaction.id }}</h1>
                 <div class="flex w-full h-10 justify-center items-center mt-5">
                     <img class="dark:invert h-full mr-3" :src="'/logos/'+transaction.game.logo_id+'.svg'">

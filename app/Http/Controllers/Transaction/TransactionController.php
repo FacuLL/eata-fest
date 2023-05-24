@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Events\NewTransaction;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -9,7 +10,6 @@ use Validator;
 use App\Models\Participant;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class TransactionController extends Controller {
     /**
@@ -43,6 +43,7 @@ class TransactionController extends Controller {
             'points' => $request->points
         ]);
         $participant->update(['points' => ($participant->points + $request->points)]);
+        event(new NewTransaction($transaction));
         return redirect('dashboard/transaction?id='.(string)$transaction->id.'&success=true');
     }
 
