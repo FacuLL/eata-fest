@@ -43,7 +43,7 @@ function addPoints(game, participant) {
 </script>
 
 <template>
-    <AppLayout title="Dashboard"  user_type="{{ $page.props.user_type }}">
+    <AppLayout title="Game"  user_type="{{ $page.props.user_type }}">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h2 class="text-gray-500 text-center text-xl">Juego:</h2>

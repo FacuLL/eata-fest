@@ -27,7 +27,7 @@ import PrimaryButton from '../Components/PrimaryButton.vue';
 </script>
 
 <template>
-    <AppLayout title="Dashboard"  user_type="{{ $page.props.user_type }}">
+    <AppLayout title="Transaction"  user_type="{{ $page.props.user_type }}">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h1 v-if="success" class="mb-2 text-gray-500 text-center text-xl">Transacción creada con éxito</h1>
