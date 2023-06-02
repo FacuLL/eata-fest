@@ -40,10 +40,10 @@ const submit = () => {
 <template>
     <Head title="Register" />
 
-    <DialogModal :show="this.showCodeModal">
+    <DialogModal :show="showCodeModal">
         <template #title>
             <div class="flex justify-end">
-                <button @click="this.showCodeModal = false">
+                <button @click="showCodeModal = false">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M18 6l-12 12"></path>
@@ -125,7 +125,7 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <p @click="this.showCodeModal = true" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                <p @click="showCodeModal = true" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                     ¿Olvidaste tu número de identificación?
                 </p>
 
