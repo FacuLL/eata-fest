@@ -15,7 +15,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('participant-register'));
+    form.post(route('participant-create'));
 };
 </script>
 
