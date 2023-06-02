@@ -45,7 +45,7 @@ Route::get('/ranking', function () {
     return Inertia::render('Ranking', ["participants" => $participants]);
 })->name('ranking');
 
-Route::post('/participant/register', 'App\Http\Controllers\Participant\ParticipantController@store')->name('participant-register');
+Route::post('/participant/register', 'App\Http\Controllers\Participant\ParticipantController@store')->name('participant-create');
 
 Route::middleware([
     'auth:sanctum',

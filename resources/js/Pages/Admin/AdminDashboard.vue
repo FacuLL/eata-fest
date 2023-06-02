@@ -15,64 +15,6 @@
     });
 </script>
 
-<script>
-export default {
-    data() {
-        return {
-            search: "",
-            gameLogo: 0,
-            showGameModal: false,
-            showMessageModal: false,
-            showSuccessModal: true,
-            userGameSelection: null,
-            gameDeleteModal: null
-        };
-    },
-    methods: {
-        changeSearch(text) {
-            this.search = text;
-        },
-        makeRequest() {
-            let url = "/admin/dashboard";
-            if (this.search.length > 3)
-                url += ("?name=" + this.search);
-            this.$inertia.get(url);
-        },
-        userSearch(text) {
-            if (text.length <= 3)
-                return;
-            this.makeRequest();
-        },
-        createGame(form) {
-            this.showGameModal = false;
-            form.transform(data => ({
-                ...data,
-                logo_id: this.gameLogo
-            })).post(route('admin-game'));
-        },
-        handleGameClick(gameid) {
-            if (!this.userGameSelection) return this.gameDeleteModal = gameid;
-            return this.userGameAttach(gameid);
-        },
-        userGameAttach(gameid) {
-            this.$inertia.post('user-game', { game: gameid, user: this.userGameSelection });
-        },
-        deleteGameAttach(userid, gameid) {
-            this.$inertia.delete(`user-game?user=${userid}&game=${gameid}`);
-        },
-        deleteGame(gameid) {
-            this.gameDeleteModal = null;
-            this.$inertia.delete(`game?id=${gameid}`);
-        }
-    },
-    props: {
-        users: Array,
-        games: Array,
-    },
-    components: { DialogModal, InputLabel, TextInput, PrimaryButton, SecondaryButton, DangerButton }
-}
-</script>
-
 <template>
     <DialogModal :show="this.gameDeleteModal">
         <template #title>
@@ -222,3 +164,60 @@ export default {
     </AppLayout>
 </template> 
 
+<script>
+export default {
+    data() {
+        return {
+            search: "",
+            gameLogo: 0,
+            showGameModal: false,
+            showMessageModal: false,
+            showSuccessModal: true,
+            userGameSelection: null,
+            gameDeleteModal: null
+        };
+    },
+    methods: {
+        changeSearch(text) {
+            this.search = text;
+        },
+        makeRequest() {
+            let url = "/admin/dashboard";
+            if (this.search.length > 3)
+                url += ("?name=" + this.search);
+            this.$inertia.get(url);
+        },
+        userSearch(text) {
+            if (text.length <= 3)
+                return;
+            this.makeRequest();
+        },
+        createGame(form) {
+            this.showGameModal = false;
+            form.transform(data => ({
+                ...data,
+                logo_id: this.gameLogo
+            })).post(route('admin-game'));
+        },
+        handleGameClick(gameid) {
+            if (!this.userGameSelection) return this.gameDeleteModal = gameid;
+            return this.userGameAttach(gameid);
+        },
+        userGameAttach(gameid) {
+            this.$inertia.post('user-game', { game: gameid, user: this.userGameSelection });
+        },
+        deleteGameAttach(userid, gameid) {
+            this.$inertia.delete(`user-game?user=${userid}&game=${gameid}`);
+        },
+        deleteGame(gameid) {
+            this.gameDeleteModal = null;
+            this.$inertia.delete(`game?id=${gameid}`);
+        }
+    },
+    props: {
+        users: Array,
+        games: Array,
+    },
+    components: { DialogModal, InputLabel, TextInput, PrimaryButton, SecondaryButton, DangerButton }
+}
+</script>
