@@ -29,7 +29,6 @@ const submit = () => {
         },
         methods: {
             searchCode: function () {
-                console.log(this.dni);
                 if (!this.dni) return;
                 this.$inertia.get('/participant/code' + "?dni=" + this.dni);
             }

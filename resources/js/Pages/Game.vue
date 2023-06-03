@@ -47,7 +47,7 @@ function addPoints(game, participant) {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <h2 class="text-gray-500 text-center text-xl">Juego:</h2>
-                <h1 class="text-3xl text-center dark:text-gray-200">{{ this.game.name }}</h1>
+                <h1 class="text-3xl text-center dark:text-gray-200">{{ game.name }}</h1>
                 <div class="dark:bg-gray-800 rounded p-3 mt-3">
                     <h3 class="text-gray-500 text-xl text-center mb-3">Sumar puntos</h3>
                     <div class="w-full sm:px-10 px-0">
@@ -56,7 +56,7 @@ function addPoints(game, participant) {
                             <div class="flex items-center">
                                 <TextInput
                                     id="userid"
-                                    v-model="this.participantid"
+                                    v-model="participantid"
                                     type="number"
                                     class="mt-1 block w-full"
                                     required

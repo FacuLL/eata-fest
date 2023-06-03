@@ -1,11 +1,6 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
+import { Head } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import ApplicationLogo from '../../Components/ApplicationLogo.vue';
 </script>
 
 <script>
@@ -45,7 +40,7 @@ import ApplicationLogo from '../../Components/ApplicationLogo.vue';
                 </div>
         </div>
         <div class="flex mt-4 justify-center w-full">
-            <PrimaryButton @click="this.$inertia.get('/')">Volver</PrimaryButton>
+            <PrimaryButton @click="$inertia.get('/')">Volver</PrimaryButton>
         </div>
     </div>
 </template>

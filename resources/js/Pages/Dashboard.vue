@@ -22,7 +22,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <h1 class="text-3xl text-center dark:text-gray-200">Tus juegos</h1>
                     <div class="p-3 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mt-4">
-                        <div @click="this.$inertia.get('dashboard/game?id='+game.id)" class="group bg-gray-400 dark:bg-gray-800 rounded-lg p-4 scale-100 transition-all duration-250 motion-safe:hover:scale-[1.03] hover:outline cursor-pointer hover:outline-violet-700" v-for="game in games"> 
+                        <div @click="$inertia.get('dashboard/game?id='+game.id)" class="group bg-gray-400 dark:bg-gray-800 rounded-lg p-4 scale-100 transition-all duration-250 motion-safe:hover:scale-[1.03] hover:outline cursor-pointer hover:outline-violet-700" v-for="game in games"> 
                             <h1 class="dark:text-gray-200 text-center text-2xl text-ellipsis overflow-hidden"> {{ game.name }} </h1>
                             <div class="flex w-full mt-3 h-16 items-start content-center justify-center transition-all duration-250">
                                 <img class="h-full dark:invert" :src="'/logos/'+game.logo_id+'.svg'">
