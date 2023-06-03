@@ -59,7 +59,7 @@ const submit = () => {
                     <InputLabel for="dni2" value="DNI" />
                     <TextInput
                         id="dni2"
-                        v-model="this.dni"
+                        v-model="dni"
                         type="text"
                         class="mt-1 block w-full"
                         required
