@@ -146,10 +146,10 @@
                     <div class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-10 mt-5 gap-3">
                         <div @click="handleGameClick(game.id)" class="group bg-gray-400 dark:bg-gray-800 rounded-lg p-4 scale-100 transition-all duration-250 motion-safe:hover:scale-[1.03] hover:outline cursor-pointer" :class="userGameSelection ? 'hover:outline-violet-700' : 'hover:outline-red-700'" v-for="game in games"> 
                             <h1 class="dark:text-gray-200 text-center text-2xl text-ellipsis overflow-hidden"> {{ game.name }} </h1>
-                            <div class="flex w-full mt-3 h-16 items-start content-center justify-center transition-all duration-250" :class="!this.userGameSelection ? 'group-hover:ml-[-30px]' : ''">
+                            <div class="flex w-full mt-3 h-16 items-start content-center justify-center transition-all duration-250" :class="!userGameSelection ? 'group-hover:ml-[-30px]' : ''">
                                 <img class="h-full dark:invert" :src="'/logos/'+game.logo_id+'.svg'">
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="dark:invert scale-150 transition-all duration-250 opacity-0 absolute top-[55%] right-1/2" :class="!this.userGameSelection ? 'group-hover:right-1/4 group-hover:opacity-100' : ''"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="dark:invert scale-150 transition-all duration-250 opacity-0 absolute top-[55%] right-1/2" :class="!userGameSelection ? 'group-hover:right-1/4 group-hover:opacity-100' : ''"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M4 7h16"></path>
                                 <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
