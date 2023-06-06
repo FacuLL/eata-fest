@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminAccepted;
 use App\Http\Middleware\UserType;
 use App\Models\Game;
+use App\Models\Participant;
 use App\Models\User;
 use Inertia\Inertia;
 
@@ -32,6 +33,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/game', 'App\Http\Controllers\Game\GameController@delete')->name('admin-game-delete'); 
             Route::post('/user-game', 'App\Http\Controllers\Game\GameController@addUser')->name('admin-user-game');
             Route::delete('/user-game', 'App\Http\Controllers\Game\GameController@deleteUser')->name('admin-user-game-delete');
+            Route::get('/ranking', function () {
+                $participants = Participant::offset(0)->limit(20)->orderBy('points', 'desc')->get();
+                return Inertia::render('Ranking', ["participants" => $participants]);
+            })->name('ranking');
     });
 
     
