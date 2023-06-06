@@ -51,7 +51,7 @@ const textColors = ['!text-yellow-300', '!text-white', '!text-orange-400'];
 <template>
     <Head title="Ranking" />
 
-    <div class="dark:bg-gray-800 absolute h-full w-full">
+    <div class="dark:bg-gray-800 absolute min-h-screen w-full">
         <h1 class="mt-5 text-3xl text-center dark:text-gray-200">Ranking</h1>
         <div class="mt-5 mx-1 sm:mx-5 md:max-w-screen-lg md:mx-auto">
             <div class="w-full px-2">
@@ -66,7 +66,7 @@ const textColors = ['!text-yellow-300', '!text-white', '!text-orange-400'];
             </div>
         </div>
         <div class="flex w-full justify-center mt-4">
-            <PrimaryButton @click="goBack()">Volver</PrimaryButton>
+            <PrimaryButton @click="goBack()" class="mb-3">Volver</PrimaryButton>
         </div>
     </div>
 </template>
