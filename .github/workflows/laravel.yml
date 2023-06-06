@@ -30,4 +30,4 @@ jobs:
     - name: Vite build
       run: npm run build
     - name: Directory Permissions
-      run: echo facu | sudo -S chmod -R 777 storage bootstrap/cache
+      run: echo facu | sudo -S chmod -R 777 storage bootstrap/cache public
