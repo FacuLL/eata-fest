@@ -30,4 +30,6 @@ jobs:
     - name: Vite build
       run: npm run build
     - name: Directory Permissions
-      run: echo facu | sudo -S chmod -R 777 storage bootstrap/cache public 
+      run: echo facu | sudo -S chmod -R 777 storage bootstrap/cache public
+    - name: Copy files
+      run: echo facu | sudo -S cp -R /home/user/actions-runner/eata-fest/eata-fest/eata-fest /var/www/html/eata-fest
